@@ -16,9 +16,7 @@ class HiddenInfo:
     """
 
     def __init__(self):
-        self.letters = string.ascii_letters + " "
-        for each in range(10):
-            self.letters += str(each)
+        self.characters = string.printable
         self.encrypt_dict = dict()
         self.decrypt_dict = dict()
         self.key_value = ""
@@ -41,7 +39,7 @@ class HiddenInfo:
     def key_gen(self):
         self.encrypt_dict.clear()
         self.decrypt_dict.clear()
-        for each in self.letters:
+        for each in self.characters:
             value_list = self.encrypt_dict.values()
             while True:
                 self.key_value = str(random.randint(1000, 9999)) + "#"
@@ -71,5 +69,5 @@ class HiddenInfo:
             for key in temp_decrypt:
                 decrypted += self.decrypt_dict[key + "#"]
             return decrypted
-        except IOError:
+        except:
             return "Incompatible Key Loaded!"
